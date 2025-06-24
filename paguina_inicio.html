@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Monarca - Repostería</title>
+    <link rel="stylesheet" href="paguina_inicioe.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        .imagen-unica {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .imagen-unica img {
+            width: 80%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease;
+        }
+
+        .imagen-unica img:hover {
+            transform: scale(1.03);
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+        }
+
+        nav a i {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="decoracion-superior"></div>
+        <div class="barra-superior">
+           
+            <nav>
+                <a href="paguina-carrito.html" title="Carrito de compras"><i class="fas fa-shopping-cart"></i></a>
+                <a href="paguina_historia.html" title="Recetario o blog"><i class="fas fa-book"></i></a>
+                <a href="paguina_menu.html" title="Menú de productos"><i class="fas fa-bars"></i></a>
+                <a href="paguina_galeria.html" title="Galería">Galería</a>
+                <a href="paguina_contacto.html">Contacto</a>
+            </nav>
+        </div>
+        <h1 class="titulo-principal">Monarca</h1>
+        <p class="slogan">Sabor que vuela alto</p>
+    </header>
+
+    <main>
+        <!-- Imagen única en lugar de galería -->
+        <section class="imagen-unica">
+            <img src="mariposa2.jpg" alt="Destacado Monarca" loading="lazy">
+        </section>
+    </main>
+
+    <div class="decoracion-inferior"> 🦋 🦋 </div>
+
+    <footer>
+        <p>&copy; 2025 Monarca Repostería. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

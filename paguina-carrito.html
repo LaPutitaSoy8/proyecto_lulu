@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title> COMPRAS</title>
+  <link rel="stylesheet" href="paguina_carrito.css">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Comic Neue', cursive, sans-serif;
+      background: #fff0f6;
+      color: #4a148c;
+      margin: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .contenedor-carrito {
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      background: #fce4ec;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(236, 64, 122, 0.3);
+    }
+    .producto {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(216, 27, 96, 0.2);
+      position: relative;
+    }
+    .producto strong {
+      font-size: 20px;
+      color: #ad1457;
+    }
+    .producto ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 8px 0 0 0;
+      color: #6a1b9a;
+    }
+    .producto .precio {
+      font-weight: bold;
+      margin-top: 8px;
+      color: #880e4f;
+    }
+    .btn-eliminar {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: #ec407a;
+      border: none;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 30px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .btn-eliminar:hover {
+      background: #b71c1c;
+    }
+    .total {
+      text-align: right;
+      font-size: 22px;
+      font-weight: 700;
+      color: #880e4f;
+      margin-top: 15px;
+    }
+    .acciones {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .acciones button {
+      background: #ec407a;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      font-size: 18px;
+      margin: 0 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .acciones button:hover {
+      background: #b71c1c;
+    }
+    .vacio {
+      text-align: center;
+      font-size: 20px;
+      color: #880e4f;
+      font-weight: 600;
+      padding: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1> COMPRAS</h1>
+    <p>¡Aquí están tus antojos listos para disfrutar!</p>
+  </header>
+
+  <div class="contenedor-carrito" id="carrito-contenido">
+    <!-- Aquí se mostrará el contenido cargado desde localStorage -->
+  </div>
+
+  <div class="total" id="total-pagar"></div>
+
+  <div class="acciones">
+    <button onclick="location.href='paguina_menu.html'">Menú</button>
+    <button onclick="confirmarPedido()">Confirmar</button>
+    <button onclick="vaciarCarrito()">Eliminar todo</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Monarca</p>
+  </footer>
+
+  <script>
+    const contenedor = document.getElementById('carrito-contenido');
+    const totalPagar = document.getElementById('total-pagar');
+    let productos = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    const preciosPostres = {
+      "Hot Cakes": { Chico: 65, Mediano: 75, Grande: 85 },
+      "Wafles": { Chico: 65, Mediano: 75, Grande: 85 },
+      "Crepas": { Chico: 65, Mediano: 75, Grande: 85 },
+      "Fresas con Crema": { Chico: 50, Mediano: 60, Grande: 70 },
+      "Helado": { Chico: 28, Mediano: 36, Grande: 60 },
+      "Bolis (Agua)": { default: 22 },
+      "Bolis (Leche)": { default: 25 },
+      "Frappe": { Chico: 65, Mediano: 75, Grande: 85 },      // <- aquí
+  "Malteada": { Chico: 65, Mediano: 75, Grande: 85 } 
+    };
+
+    const costoTopping = 5;
+
+    function calcularPrecio(producto) {
+      let precioBase = 0;
+      if (producto.nombre in preciosPostres) {
+        if (producto.tamanio && preciosPostres[producto.nombre][producto.tamanio] !== undefined) {
+          precioBase = preciosPostres[producto.nombre][producto.tamanio];
+        } else if (preciosPostres[producto.nombre].default !== undefined) {
+          precioBase = preciosPostres[producto.nombre].default;
+        } else {
+          precioBase = 0;
+        }
+      } else {
+        precioBase = 0;
+      }
+
+      let precioToppings = 0;
+      if (producto.topping) {
+        precioToppings = costoTopping;
+      }
+
+      return precioBase + precioToppings;
+    }
+
+    function mostrarCarrito() {
+      contenedor.innerHTML = "";
+
+      if (productos.length === 0) {
+        contenedor.innerHTML = "<p class='vacio'>Tu carrito está vacío.</p>";
+        totalPagar.textContent = "";
+        return;
+      }
+
+      productos.forEach((producto, i) => {
+        const div = document.createElement("div");
+        div.classList.add("producto");
+
+        let contenido = `<strong>${producto.nombre}</strong><ul>`;
+        if (producto.tamanio) contenido += `<li><b>Tamaño:</b> ${producto.tamanio}</li>`;
+        if (producto.sabor) contenido += `<li><b>Sabor:</b> ${producto.sabor}</li>`;
+        if (producto.topping) contenido += `<li><b>Topping:</b> ${producto.topping}</li>`;
+        contenido += "</ul>";
+
+        const precioProducto = calcularPrecio(producto);
+        contenido += `<div class="precio">Precio: $${precioProducto.toFixed(2)}</div>`;
+
+        contenido += `<button class="btn-eliminar" title="Eliminar" onclick="eliminarProducto(${i})">&times;</button>`;
+
+        div.innerHTML = contenido;
+        contenedor.appendChild(div);
+      });
+
+      actualizarTotal();
+    }
+
+    function eliminarProducto(index) {
+      productos.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(productos));
+      mostrarCarrito();
+    }
+
+    function vaciarCarrito() {
+      if(productos.length === 0){
+        alert("El carrito ya está vacío.");
+        return;
+      }
+      if(confirm("¿Seguro quieres eliminar todos los productos del carrito?")) {
+        productos = [];
+        localStorage.removeItem('carrito');
+        mostrarCarrito();
+      }
+    }
+
+    function actualizarTotal() {
+      const total = productos.reduce((acc, producto) => acc + calcularPrecio(producto), 0);
+      totalPagar.textContent = `Total a pagar: $${total.toFixed(2)}`;
+    }
+
+    function confirmarPedido() {
+      if(productos.length === 0){
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      alert("¡Pedido confirmado! Gracias por tu compra.");
+      localStorage.removeItem('carrito');
+      location.href = 'paguina_menu.html';
+    }
+
+    mostrarCarrito();
+  </script>
+</body>
+</html>
