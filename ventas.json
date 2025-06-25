@@ -1,0 +1,124 @@
+[
+    {
+        "clave_venta":"11E",
+        "Producto":"Pastel de chocolate",
+        "Precio": 300,
+        "Cantidad":3,
+        "Descuento": 0.15,
+        "Cliente": "Veronica Alegria",
+        "Total_pago":  255
+
+    },
+    {
+        "clave_venta":"A22",
+        "Producto":"Pastel De fresa",
+        "Precio": 250,
+        "Cantidad":3,
+        "Descuento": 0.15,
+        "Cliente": "Perla Cortes ",
+        "Total_pago":  225
+ 
+    },
+    {
+         "clave_venta":"45B",
+        "Producto":"Pastel de vainilla",
+        "Precio": 350,
+        "Cantidad":2,
+        "Descuento": 0.15,
+        "Cliente": "Arely Resendiz ",
+        "Total_pago":  315
+
+    },
+    {
+         "clave_venta":"10S",
+        "Producto":"Pastel combinado",
+        "Precio": 370,
+        "Cantidad":1,
+        "Descuento": 0.15,
+        "Cliente": "Melany Acosta",
+        "Total_pago":  335
+
+    },
+    {
+         "clave_venta":"WE1",
+        "Producto":"Pay de queso",
+        "Precio": 450,
+        "Cantidad":2,
+        "Descuento": 0.15,
+        "Cliente": "Estefany Yañez",
+        "Total_pago":  415
+
+    },
+    {
+         "clave_venta":"U09",
+        "Producto":"Pay de limon",
+        "Precio": 400,
+        "Cantidad":3,
+        "Descuento": 0.15,
+        "Cliente": "Dulce Ugalde",
+        "Total_pago":  375
+
+    },
+    {
+         "clave_venta":"B87",
+        "Producto":"Cheesecake de oreo",
+        "Precio": 500,
+        "Cantidad":2,
+        "Descuento": 0.15,
+        "Cliente": "Getsemani Chavez",
+        "Total_pago":  475
+
+    },
+    {
+         "clave_venta":"52J",
+        "Producto":"Cheesecake de Fresa ",
+        "Precio": 500,
+        "Cantidad":4,
+        "Descuento": 0.15,
+        "Cliente": "Maribel Licea",
+        "Total_pago":  475
+
+    },
+    {
+         "clave_venta":"80P",
+        "Producto":"Cheescake de chocolate ",
+        "Precio": 520,
+        "Cantidad":1,
+        "Descuento": 0.15,
+        "Cliente": "Edalit becerril",
+        "Total_pago":  495
+
+    },
+    {
+         "clave_venta":"Z12",
+        "Producto":"Donas de chocolate ",
+        "Precio": 300,
+        "Cantidad":2,
+        "Descuento": 0.15,
+        "Cliente": "Magaly Alegria",
+        "Total_pago":  275
+
+    },
+    {
+         "clave_venta":"HY9",
+        "Producto":"Gallletas rellenas de mermelada ",
+        "Precio": 250,
+        "Cantidad":20,
+        "Descuento": 0.15,
+        "Cliente": "Erika Uribe",
+        "Total_pago":  215
+
+    },
+    {
+         "clave_venta":"10Ñ",
+        "Producto":"Pastel imposible ",
+        "Precio": 600,
+        "Cantidad":3,
+        "Descuento": 0.15,
+        "Cliente": "Fernanda Martinez",
+        "Total_pago":  575
+
+    }
+
+
+]
